@@ -107,7 +107,7 @@ gulp.task('zebrascript', function() {
 });
 
 gulp.task('tiny', function() {
-    return gulp.src(wifiFiles)
+    return gulp.src(tinyFiles)
         .pipe(concat('zebra.tiny.js'))
         .pipe(gulp.dest('.'))
         .pipe(rename('zebra.tiny.min.js'))
