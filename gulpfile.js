@@ -25,9 +25,28 @@ var uiFiles = [
     'src/ui.designer.js'
 ];
 
+var uiTinyFiles = [
+    'src/layout.js',
+    'src/util.js',
+    'src/io.js',
+    'src/data.js',
+    'src/ui.webstuff.js',
+    'src/canvas.js',
+    'src/ui.js',
+    'src/ui.TextField.js',
+    'src/ui.list.js',
+    'src/ui.window.js',
+    'src/ui.html.js',
+    'src/ui.designer.js'
+];
+
 var zebraFiles = [
     'src/easyoop.js',
 ].concat(uiFiles);
+
+var tinyFiles = [
+    'src/easyoop.js',
+].concat(uiTinyFiles);
 
 var demoFiles = [
     "samples/demo/ui.demo.js",
@@ -87,6 +106,23 @@ gulp.task('zebrascript', function() {
         .pipe(gulp.dest('.'));
 });
 
+gulp.task('tiny', function() {
+    return gulp.src(wifiFiles)
+        .pipe(concat('zebra.tiny.js'))
+        .pipe(gulp.dest('.'))
+        .pipe(rename('zebra.tiny.min.js'))
+        .pipe(uglify({ compress: false, mangle: false }))
+        .pipe(gulp.dest('.'));
+});
+
+gulp.task('tinyjson', function() {
+    return gulp.src('src/zebra.tiny.json.js')
+        .pipe(concat('zebra.tiny.json.js'))
+        .pipe(gulp.dest('.'))
+        .pipe(uglify({ compress: false, mangle: false }))
+        .pipe(gulp.dest('.'));
+});
+
 gulp.task('runtime', function () {
     return gulp.src(['zebra.js', 'zebra.min.js', 'zebra.png', 'zebra.json'])
         .pipe(zip('zebra.runtime.zip'))
@@ -116,6 +152,6 @@ gulp.task('watch', function() {
     gulp.watch("samples/js/uiengine.samples.js", ['samplescript']);
 });
 
-gulp.task('scripts', [ "demoscript", "samplescript", "zebrascript"]);
+gulp.task('scripts', [ "demoscript", "samplescript", "zebrascript", 'tiny', 'tinyjson']);
 
 gulp.task('default', ['scripts', 'copy', 'runtime']);
