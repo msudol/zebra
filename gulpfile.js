@@ -7,6 +7,23 @@ var rename = require('gulp-rename');
 var webserver = require('gulp-webserver');
 var zip = require('gulp-zip');
 
+var uxFiles = [
+   'src/ui.webstuff.js',
+   'src/ui.js',
+   'src/ui.TextField.js',
+   'src/ui.list.js',
+   'src/ui.window.js',
+   'src/ui.html.js',
+   'src/ui.designer.js'                 
+];
+
+var coreFiles = [
+     'src/layout.js',
+     'src/util.js',
+     'src/io.js',
+     'src/data.js',
+     'src/canvas.js'     
+];
 
 var uiFiles = [
     'src/layout.js',
